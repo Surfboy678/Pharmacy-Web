@@ -31,9 +31,15 @@ public class MedicamentController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "medicamentById/{idMedicament}")
-    public@ResponseBody
+    public @ResponseBody
     ResponseEntity getMedicamentById(@PathVariable Integer idMedicament){
        Optional<Medicament> medicament = medicamentService.findMedicamentById(idMedicament);
+       return ResponseEntity.ok(medicament);
+    }
+    @RequestMapping(method = RequestMethod.POST, value = "addMedicament")
+    public @ResponseBody
+    ResponseEntity addMedicament(@RequestBody Medicament newMedicament){
+       Medicament medicament = medicamentService.addMedicament(newMedicament);
        return ResponseEntity.ok(medicament);
     }
 }

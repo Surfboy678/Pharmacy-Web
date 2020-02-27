@@ -23,4 +23,8 @@ public class MedicamentService {
     public Optional<Medicament> findMedicamentById(Integer idMedicament){
         return medicamentRepository.findById(idMedicament);
     }
+    public Medicament addMedicament(Medicament medicament){
+        medicamentRepository.save(medicament);
+        return medicament;
+    }
 }

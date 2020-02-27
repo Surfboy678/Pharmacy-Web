@@ -11,15 +11,19 @@ public class Medicament {
 
     private String name;
 
+    private String description;
+
     private Integer amount;
 
     public Medicament() {
     }
 
-    public Medicament(Integer id, String name, Integer amount) {
+    public Medicament(Integer id, String name, String description, Integer amount) {
         this.id = id;
         this.name = name;
+        this.description = description;
         this.amount = amount;
+
     }
 
     public Integer getId() {
@@ -38,6 +42,14 @@ public class Medicament {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public Integer getAmount() {
         return amount;
     }
@@ -51,6 +63,7 @@ public class Medicament {
         return "Medicament{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
                 ", amount=" + amount +
                 '}';
     }
