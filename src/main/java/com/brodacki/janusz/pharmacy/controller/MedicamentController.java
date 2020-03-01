@@ -1,7 +1,6 @@
 package com.brodacki.janusz.pharmacy.controller;
 
 import com.brodacki.janusz.pharmacy.model.Medicament;
-import com.brodacki.janusz.pharmacy.repository.MedicamentRepository;
 import com.brodacki.janusz.pharmacy.service.MedicamentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +19,6 @@ public class MedicamentController {
     public MedicamentController(MedicamentService medicamentService) {
         this.medicamentService = medicamentService;
     }
-
 
 
     @RequestMapping(method = RequestMethod.GET, value = "listMedicament")
@@ -42,4 +40,10 @@ public class MedicamentController {
        Medicament medicament = medicamentService.addMedicament(newMedicament);
        return ResponseEntity.ok(medicament);
     }
+
+    @RequestMapping("/hello")
+    public String home(){
+        return "Hello World!";
+    }
 }
+
