@@ -10,7 +10,7 @@ public class User {
     @Id
     private int user_id;
 
-    private String userName;
+    private String username;
 
     private String password;
 
@@ -20,6 +20,9 @@ public class User {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+    public User() {
+    }
+
     public int getUser_id() {
         return user_id;
     }
@@ -28,12 +31,12 @@ public class User {
         this.user_id = user_id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

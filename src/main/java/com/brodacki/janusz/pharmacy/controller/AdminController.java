@@ -3,6 +3,7 @@ package com.brodacki.janusz.pharmacy.controller;
 import com.brodacki.janusz.pharmacy.model.User;
 import com.brodacki.janusz.pharmacy.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,13 +21,7 @@ public class AdminController {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
-
-    @Autowired
-    public AdminController(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-
+    @PreAuthorize("hasAnnyRole('ADMIN')")
     @PostMapping("/admin/add")
     public String addedUserByAdmin(@RequestBody User user){
         String pwd = user.getPassword();
