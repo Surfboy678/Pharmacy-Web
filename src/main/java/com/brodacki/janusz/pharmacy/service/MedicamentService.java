@@ -20,6 +20,7 @@ public class MedicamentService {
     public Iterable<Medicament> findAllMedicament(){
         return medicamentRepository.findAll();
     }
+
     public Optional<Medicament> findMedicamentById(Integer idMedicament){
         return medicamentRepository.findById(idMedicament);
     }
@@ -27,4 +28,10 @@ public class MedicamentService {
         medicamentRepository.save(medicament);
         return medicament;
     }
+
+    public void deleteMedicament(Integer idMedicament){
+        medicamentRepository.deleteById(idMedicament);
+    }
+
+
 }

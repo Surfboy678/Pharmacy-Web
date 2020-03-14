@@ -2,7 +2,7 @@ package com.brodacki.janusz.pharmacy.security;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -16,11 +16,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 @Configuration
+@EnableAutoConfiguration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Qualifier("customUserDetailsService")
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -31,14 +31,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic().and().authorizeRequests()
-                .antMatchers("/auth/**").permitAll()
-                .antMatchers("/secure/**")
-                .hasAnyRole("ADMIN")
+        http.httpBasic().and()
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/auth/process/").hasAnyRole("USER")
+                .antMatchers("/secure/rest/admin/*").permitAll()
+                .anyRequest()
+                .authenticated()
                 .and()
-                .formLogin().permitAll()
-                .and()
-                .csrf().disable();
+                .formLogin();
+
 
     }
 

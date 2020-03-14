@@ -21,7 +21,6 @@ public class AdminController {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
-    @PreAuthorize("hasAnnyRole('ADMIN')")
     @PostMapping("/admin/add")
     public String addedUserByAdmin(@RequestBody User user){
         String pwd = user.getPassword();
