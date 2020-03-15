@@ -1,6 +1,6 @@
-package com.brodacki.janusz.pharmacy.repository;
+package com.brodacki.janusz.pharmacy.user.repository;
 
-import com.brodacki.janusz.pharmacy.model.User;
+import com.brodacki.janusz.pharmacy.user.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

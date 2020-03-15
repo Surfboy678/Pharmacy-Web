@@ -1,4 +1,4 @@
-package com.brodacki.janusz.pharmacy.model;
+package com.brodacki.janusz.pharmacy.user.model;
 
 import javax.persistence.*;
 

@@ -1,6 +1,6 @@
-package com.brodacki.janusz.pharmacy.repository;
+package com.brodacki.janusz.pharmacy.user.repository;
 
-import com.brodacki.janusz.pharmacy.model.Role;
+import com.brodacki.janusz.pharmacy.user.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RoleRepository extends JpaRepository<Role, Integer> {

@@ -1,6 +1,6 @@
-package com.brodacki.janusz.pharmacy.service;
+package com.brodacki.janusz.pharmacy.user.service;
 
-import com.brodacki.janusz.pharmacy.model.User;
+import com.brodacki.janusz.pharmacy.user.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
