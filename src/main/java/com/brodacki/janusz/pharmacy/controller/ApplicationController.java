@@ -5,12 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/auth")
 public class ApplicationController {
 
-    //@PreAuthorize("hasAnyRole('ADMIN')")
-    @RequestMapping("/process")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @RequestMapping("/")
     public String processAuth(){
-        return "processing...";
+        return "process";
     }
 }

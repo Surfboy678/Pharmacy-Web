@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +26,8 @@ public class MedicamentController {
     }
 
 
+
+   // @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @RequestMapping(method = RequestMethod.GET, value = "listMedicament")
     public @ResponseBody
     ResponseEntity<List<Medicament>> listMedicament() {
@@ -36,6 +39,8 @@ public class MedicamentController {
         return new ResponseEntity(allMedicament, HttpStatus.OK);
 
     }
+
+
 
     @RequestMapping(method = RequestMethod.GET, value = "medicamentById/{idMedicament}")
     public @ResponseBody
