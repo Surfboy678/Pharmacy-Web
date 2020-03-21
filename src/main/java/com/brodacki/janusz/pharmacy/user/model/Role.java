@@ -1,6 +1,7 @@
 package com.brodacki.janusz.pharmacy.user.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "roles")
@@ -13,6 +14,9 @@ public class Role {
 
     @Column(name = "role")
     private String role;
+
+    @ManyToMany(mappedBy = "roles")
+    List<User> users;
 
     public Role() {
 
@@ -32,5 +36,13 @@ public class Role {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }
