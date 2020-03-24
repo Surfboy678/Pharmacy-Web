@@ -28,8 +28,6 @@ import javax.sql.DataSource;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-    @Autowired
-    private UserDetailsService userDetailsService;
 
     @Autowired
     private BCryptPasswordEncoder bcp;
@@ -54,6 +52,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+              
+                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
@@ -61,9 +61,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/adduser").permitAll()
                 .antMatchers("/admin").hasAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated()
-                .and().csrf().disable()
+                .and()
                 .formLogin()
-                .loginPage("/login")
                 .failureUrl("/login?error=true")
                 .defaultSuccessUrl("/").usernameParameter("email")
                 .passwordParameter("password")

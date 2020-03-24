@@ -2,7 +2,6 @@ package com.brodacki.janusz.pharmacy.user.service;
 
 import com.brodacki.janusz.pharmacy.user.model.User;
 import com.brodacki.janusz.pharmacy.user.repository.UserRepository;
-import com.brodacki.janusz.pharmacy.user.service.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

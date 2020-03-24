@@ -25,6 +25,9 @@ public class User {
 
     private int active;
 
+    @Transient
+    private int numberRole;
+
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -88,5 +91,13 @@ public class User {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public int getNumberRole() {
+        return numberRole;
+    }
+
+    public void setNumberRole(int numberRole) {
+        this.numberRole = numberRole;
     }
 }

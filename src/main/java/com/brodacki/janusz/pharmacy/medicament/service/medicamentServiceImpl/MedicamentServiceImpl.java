@@ -4,6 +4,9 @@ import com.brodacki.janusz.pharmacy.medicament.model.Medicament;
 import com.brodacki.janusz.pharmacy.medicament.repository.MedicamentRepository;
 import com.brodacki.janusz.pharmacy.medicament.service.MedicamentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,9 +22,10 @@ public class MedicamentServiceImpl implements MedicamentService {
         this.medicamentRepository = medicamentRepository;
     }
 
-    public List<Medicament> findAllMedicament() {
-        return medicamentRepository.findAll();
+    public Page<Medicament> findAllMedicament() {
+        return medicamentRepository.findAll(PageRequest.of(1, 5));
     }
+
 
     @Override
     public Optional<Medicament> findMedicamentById(Integer idMedicament) {
@@ -34,6 +38,7 @@ public class MedicamentServiceImpl implements MedicamentService {
 
     }
 
+
     public boolean isMedicamentExist(Medicament medicament) {
         return medicamentRepository.findByName(medicament.getName()) != null;
     }
@@ -41,6 +46,14 @@ public class MedicamentServiceImpl implements MedicamentService {
 
     public void deleteMedicament(Integer idMedicament) {
         medicamentRepository.deleteById(idMedicament);
+    }
+
+    public List<Medicament> findSortedListMedicamentByPriceGrowing(){
+        return medicamentRepository.findAll( Sort.by(Sort.Direction.ASC, "price"));
+    }
+
+    public List<Medicament> findSortedListMedicamentByPriceDecline(){
+        return medicamentRepository.findAll(Sort.by(Sort.Direction.DESC, "price"));
     }
 
 }

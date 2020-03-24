@@ -1,8 +1,12 @@
 package com.brodacki.janusz.pharmacy.medicament.controller;
 
 import com.brodacki.janusz.pharmacy.medicament.model.Medicament;
+import com.brodacki.janusz.pharmacy.medicament.repository.MedicamentRepository;
 import com.brodacki.janusz.pharmacy.medicament.service.medicamentServiceImpl.MedicamentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +23,10 @@ public class MedicamentController {
 
     private MedicamentServiceImpl medicamentServiceImpl;
 
+    @Autowired
+    private MedicamentRepository repository;
+
+
 
     @Autowired
     public MedicamentController(MedicamentServiceImpl medicamentServiceImpl) {
@@ -31,13 +39,24 @@ public class MedicamentController {
     @RequestMapping(method = RequestMethod.GET, value = "listMedicament")
     public @ResponseBody
     ResponseEntity<List<Medicament>> listMedicament() {
-        List<Medicament> allMedicament = medicamentServiceImpl.findAllMedicament();
+        Page<Medicament> allMedicament =medicamentServiceImpl.findAllMedicament();
 
         if (allMedicament.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity(allMedicament, HttpStatus.OK);
 
+    }
+    @RequestMapping(method = RequestMethod.GET, value = "sortByPriceGrowing")
+    public List<Medicament> getListSortedByPriceGrowing(){
+      List<Medicament> sortedByPrice = medicamentServiceImpl.findSortedListMedicamentByPriceGrowing();
+        return sortedByPrice;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "sortByPriceDecline")
+    public List<Medicament>  getListSortedByPriceDecline(){
+        List<Medicament> sortedByPrice = medicamentServiceImpl.findSortedListMedicamentByPriceDecline();
+        return sortedByPrice;
     }
 
 
@@ -76,6 +95,7 @@ public class MedicamentController {
         medicamentServiceImpl.deleteMedicament(idMedicament);
         return new ResponseEntity<Medicament>(HttpStatus.NO_CONTENT);
     }
+
 
     @RequestMapping(method = RequestMethod.PUT, value = "update/{idMedicament}")
     public @ResponseBody ResponseEntity<Medicament> updateMedicament(@PathVariable Integer idMedicament, @Valid @RequestBody Medicament medicament) {

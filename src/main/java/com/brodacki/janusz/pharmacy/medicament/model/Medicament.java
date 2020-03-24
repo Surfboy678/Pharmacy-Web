@@ -15,6 +15,8 @@ public class Medicament {
 
     private Integer amount;
 
+    private Long price;
+
     public Medicament() {
     }
 
@@ -58,6 +60,14 @@ public class Medicament {
         this.amount = amount;
     }
 
+    public Long getPrice() {
+        return price;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "Medicament{" +
@@ -65,6 +75,7 @@ public class Medicament {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", amount=" + amount +
+                ", price=" + price +
                 '}';
     }
 }
