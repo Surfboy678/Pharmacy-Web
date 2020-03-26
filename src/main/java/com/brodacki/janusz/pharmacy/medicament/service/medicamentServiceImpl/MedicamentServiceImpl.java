@@ -26,18 +26,14 @@ public class MedicamentServiceImpl implements MedicamentService {
         return medicamentRepository.findAll(PageRequest.of(1, 5));
     }
 
-
     @Override
     public Optional<Medicament> findMedicamentById(Integer idMedicament) {
         return medicamentRepository.findById(idMedicament);
     }
 
-
     public Medicament addMedicament(Medicament medicament) {
-       return medicamentRepository.save(medicament);
-
+        return medicamentRepository.save(medicament);
     }
-
 
     public boolean isMedicamentExist(Medicament medicament) {
         return medicamentRepository.findByName(medicament.getName()) != null;
@@ -48,11 +44,11 @@ public class MedicamentServiceImpl implements MedicamentService {
         medicamentRepository.deleteById(idMedicament);
     }
 
-    public List<Medicament> findSortedListMedicamentByPriceGrowing(){
-        return medicamentRepository.findAll( Sort.by(Sort.Direction.ASC, "price"));
+    public List<Medicament> findSortedListMedicamentByPriceGrowing() {
+        return medicamentRepository.findAll(Sort.by(Sort.Direction.ASC, "price"));
     }
 
-    public List<Medicament> findSortedListMedicamentByPriceDecline(){
+    public List<Medicament> findSortedListMedicamentByPriceDecline() {
         return medicamentRepository.findAll(Sort.by(Sort.Direction.DESC, "price"));
     }
 
